@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<title>Rust to WebAssembly example</title>
+</head>
+<body>
+<script>
+var Module = {}
+fetch('target/wasm32-unknown-emscripten/debug/deps/rust_wasm_dom-a6c79df426118d54.wasm')
+  .then((response) => response.arrayBuffer())
+  .then((buffer) => {
+    Module.wasmBinary = buffer
+    var script = document.createElement('script')
+    script.src = "target/wasm32-unknown-emscripten/debug/rust-wasm-dom.js"
+    document.body.appendChild(script)
+  })
+</script>
+</body>
+</html>
